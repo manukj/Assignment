@@ -56,11 +56,16 @@ class TestAssignment2 {
 		String fail2 = "A B C D G";
 		String fail3 = "";
 		assertAll(
-				() -> assertArrayEquals(expected.trim().split(" "),input.getValidCourseInput(courses_list, 4,expected, "ValidateCourse with correct Input")),
-				() -> assertArrayEquals(expected.trim().split(" "),input.getValidCourseInput(courses_list, 4,fail1, "ValidateCourse with only 3 Courses |Enter the course A B C D|")),
-				() -> assertArrayEquals(expected.trim().split(" "),input.getValidCourseInput(courses_list, 4,fail2, "ValidateCourse with unknown Course |Enter the course A B C D|")),
-				() -> assertArrayEquals(expected.trim().split(" "),input.getValidCourseInput(courses_list, 4,fail3, "ValidateCourse with Empty field |Enter the course A B C D|"))
-		);	
+				() -> assertArrayEquals(expected.trim().split(" "),
+						input.getValidCourseInput(courses_list, 4, expected, "ValidateCourse with correct Input")),
+				() -> assertArrayEquals(expected.trim().split(" "),
+						input.getValidCourseInput(courses_list, 4, fail1,
+								"ValidateCourse with only 3 Courses |Enter the course A B C D|")),
+				() -> assertArrayEquals(expected.trim().split(" "),
+						input.getValidCourseInput(courses_list, 4, fail2,
+								"ValidateCourse with unknown Course |Enter the course A B C D|")),
+				() -> assertArrayEquals(expected.trim().split(" "), input.getValidCourseInput(courses_list, 4, fail3,
+						"ValidateCourse with Empty field |Enter the course A B C D|")));
 	}
 
 }

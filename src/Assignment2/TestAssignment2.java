@@ -1,5 +1,7 @@
+/*
+ * Created by Manu KJ 
+ */
 package Assignment2;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -13,7 +15,6 @@ import org.junit.jupiter.api.Test;
 class TestAssignment2 {
 
 	@Test
-	@Disabled
 	@Order(1)
 	@DisplayName("Validating String and Empty field")
 	void test_String_and_Empty_Field() {
@@ -27,7 +28,6 @@ class TestAssignment2 {
 	}
 
 	@Test
-	@Disabled
 	@Order(2)
 	@DisplayName("Validating Integer and Empty field")
 	void test_Integer_and_Empty_Field() {

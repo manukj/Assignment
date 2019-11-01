@@ -1,3 +1,6 @@
+/*
+ * Created by Manu KJ 
+ */
 package Assignment4;
 
 import java.sql.*;
@@ -27,8 +30,8 @@ public class DataBase {
 		String url = "jdbc:mysql://localhost:3306/" + database + "?autoReconnect=true&useSSL=false";
 		try {
 			this.connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement statement = connection.prepareStatement("select * from Items",ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
+			PreparedStatement statement = connection.prepareStatement("select * from Items",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			this.resultSet = statement.executeQuery();
 
 			// to get the total row

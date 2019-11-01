@@ -1,3 +1,6 @@
+/*
+ * Created by Manu KJ 
+ */
 package Assignment4;
 
 import java.sql.ResultSet;
@@ -23,64 +26,62 @@ public class ThreadFunctions {
 		this.readData = false;
 		this.totalRow = totalRow;
 		this.items = new ArrayList<Items>();
-		this.visitedRow = -1;
+		this.visitedRow = 0;
 		this.resultSet = resultSet;
 	}
 
 	public synchronized void readData() throws Exception {
-		while (readData) {
+		if (readData) {
 			try {
-				System.out.println("read data waiting");
+				// System.out.println("read data waiting");
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 
-		Items item;
-		try {
+		Items item = null;
 
-			resultSet.next();
-
+		if (resultSet.next()) {
 			// add the data to the list
 			item = new Items(resultSet.getString("name"), resultSet.getDouble("price"), resultSet.getInt("quality"),
 					resultSet.getString("type"));
-			visitedRow++;
-			items.add(item);
 
-			System.out.println("read data");
-			// the data as be read now its time to notify update tax thread
-			readData = true;
-			notify();
-		} catch (Exception e) {
-			throw new Exception("Something went wrong in resultSet");
+			items.add(item);
 		}
+
+		// the data as be read now its time to notify update tax thread
+		readData = true;
+		// System.out.println("===="+item.getName()+" read==="+" readData "+readData);
+
+		notify();
+
 	}
-	
-	public synchronized void updateTax() throws Exception
-	{
-		//if its not read make it wait 
-		while(totalRow != visitedRow && !readData)
-		{
+
+	public synchronized void updateTax() throws Exception {
+		// if its not read make it wait
+		if (!readData) {
 			try {
-				System.out.println("update tax is waiting");
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		//get the item that is visited
+
+		// get the item that is visited
 		Items item = items.get(visitedRow);
 		item.calculate_tax();
 		Double tax = item.getTax();
-		//update the tax
-		resultSet.updateDouble("tax",tax);
-		
-		//make readData false so the it can read next data and notify readData thread
+
+		// update the tax
+		resultSet.updateDouble("tax", tax);
+		resultSet.updateRow();
+		visitedRow = visitedRow + 1;
+		// make readData false so the it can read next data and notify readData thread
 		readData = false;
+		// System.out.println("===update tax for iteam ="+item.getName()+" tax
+		// "+tax+"===");
 		notify();
 	}
-	
 
 }

@@ -3,7 +3,6 @@
  */
 package Assignment4;
 
-
 public class Items {
 	private String name;
 	private double price;
@@ -18,17 +17,19 @@ public class Items {
 		this.type = type;
 	}
 
-	public double getTax()
-	{
+	public double getTax() {
 		return this.tax;
 	}
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
 //	    Function to calculate tax
 	public void calculate_tax() {
 		double import_tax = 0;
 		double tot_price = 0;
-		
+
 		if (type.equals("raw")) {
 			// raw: 12.5% of the item cost
 			this.tax = (double) (0.125) * price;

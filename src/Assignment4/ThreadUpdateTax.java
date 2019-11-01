@@ -1,3 +1,6 @@
+/*
+ * Created by Manu KJ 
+ */
 package Assignment4;
 
 public class ThreadUpdateTax implements Runnable {
@@ -13,8 +16,10 @@ public class ThreadUpdateTax implements Runnable {
 
 		// read the data till the last row
 		while (threadFunctions.totalRow > threadFunctions.visitedRow) {
+
 			try {
 				threadFunctions.updateTax();
+				Thread.sleep(1000);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				System.exit(0);

@@ -59,7 +59,7 @@ public class ParseArguments {
 
 			if (choice == 'Y') {
 				System.out.print(
-						"Enter the item name, item type, item prize and item Quality as -name name_value -item item_value -type item_types -price item_price");
+						"Enter the item name, item type, item prize and item Quality as -name name_value -item item_value -type item_types -price item_price\n");
 				String string = sc.nextLine();
 				String args[] = string.split(" ");
 

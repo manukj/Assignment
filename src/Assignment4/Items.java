@@ -1,9 +1,8 @@
 /*
  * Created by Manu KJ 	
  */
-package Assignment1;
+package Assignment4;
 
-import java.util.Map;
 
 public class Items {
 	private String name;
@@ -12,13 +11,11 @@ public class Items {
 	private String type;
 	private double tax;
 
-	Items(Map<String, String> params) {
-
-		this.name = params.get("name");
-		this.price = Integer.parseInt(params.get("price"));
-		this.quality = Integer.parseInt(params.get("quality"));
-		this.type = params.get("type");
-
+	public Items(String name, double price, int quality, String type) {
+		this.name = name;
+		this.price = price;
+		this.quality = quality;
+		this.type = type;
 	}
 
 	public double getTax()

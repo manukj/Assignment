@@ -54,7 +54,7 @@ public class Student implements Serializable, Comparable<Student> {
 
 	@Override
 	public int compareTo(Student arg) {
-		int compareStep1 = this.getFullName().compareTo(arg.getFullName());
+		int compareStep1 = arg.getFullName().compareTo(this.getFullName());
 		if (compareStep1 != 0)
 			return compareStep1;
 		else
